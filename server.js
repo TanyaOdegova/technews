@@ -28,8 +28,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
-
+mongoose.connect("mongodb://heroku_hfpscxq8:mkhmr6ih3afmck759ag2vor10i@ds233167.mlab.com:33167/heroku_hfpscxq8", { useNewUrlParser: true });
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 
 // Routes
