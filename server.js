@@ -32,7 +32,7 @@ app.set('view engine', 'handlebars');
 // Connect to the Mongo DB //
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://heroku_hfpscxq8:mkhmr6ih3afmck759ag2vor10i@ds233167.mlab.com:33167/heroku_hfpscxq8", { useNewUrlParser: true });
+mongoose.connect("mongodb://heroku_hfpscxq8:0610odessa@ds233167.mlab.com:33167/heroku_hfpscxq8", { useNewUrlParser: true });
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 // Routes
 
