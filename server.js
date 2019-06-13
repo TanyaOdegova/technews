@@ -2,12 +2,18 @@
 var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var router = express.Router();
+var bodyParser = require("body-parser");
+var path = require("path");
+var Note = require("./models/Note.js");
+var Article = require("./models/Article.js");
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
 var axios = require("axios");
 var cheerio = require("cheerio");
+var request = require("request");
 
 // Require all models
 var db = require("./models");
@@ -26,19 +32,36 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
+
 var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
-// Connect to the Mongo DB //
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://heroku_hfpscxq8:mkhmr6ih3afmck759ag2vor10i@ds233167.mlab.com:33167/heroku_hfpscxq8", { useNewUrlParser: true });
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// Routes
 
+
+// Routes
+app.get("/", function(req, res){
+  Article.find({"saved": false}).then(function(data){
+    var hbsObject = {
+      article: data
+    };
+    res.render("home", hbsObject);
+  });
+});
+
+// ROUTE for Saved articles//
+app.get("/saved", function(req, res){
+  Article.find({"saved": true}).populate("note").then(function(articles){
+    var hbsObject = {
+      article: articles
+    };
+    res.render("saved", hbsObject);
+  });
+});
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
-  console.log("brandom pickles");
   // First, we grab the body of the html with axios
   axios.get("https://www.theverge.com/tech").then(function (response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -123,6 +146,7 @@ app.post("/articles/:id", function (req, res) {
       res.json(err);
     });
 });
+// ROUTE TO DELETE SAVED ARTICLES from the SAVED list //
 
 // Start the server
 app.listen(process.env.PORT || PORT, function () {

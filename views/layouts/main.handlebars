@@ -4,28 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Medula+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/img/burgericon.jpg">
+    <link rel="shortcut icon" href="../../public/assets/img/typewriter.jpg">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
+    <link rel="stylesheet" href="../../public/assets/css/technews.css" type="text/css" />
     <title>Tech News</title>
 </head>
-<body>
-    <h1>Tech News Scraper</h1>
-	<img src="/assets/img/technewsbanner.jpg" id="banner_image">
 
-	{{{ body }}}
+<body data-spy="scroll" data-target="#navbarResponsive">
+    <!--- Start Home section -->
+    <div id="home">
+        <!--NAV Section -->
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#home">
+                    <img src="assets/img/iconinverted.png" alt="TanyaO">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="custom-toggler-icon">
+                        <i class="fas fa-bars"></i>
+                    </span>
+                </button>
 
-	<footer class="footer">
-		<div class="footer-copyright">
-			<div class="container">
-				<div>© 2019</div>
-				<a><href="....">TanyaO</a>
-			</div>
-		</div>
-	</footer>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/scrape">Scrape new Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/saved">Saved Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/notes">Saved Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--END of NAV Section --->
+        <!--- Start Carousel Image Slider -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="10000">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One -->
+
+                <div class="carousel-item active" style="background-image: url('assets/img/pineapple.jpg')" alt="">
+
+                    <div class="carousel-caption text-center">
+                        <div class="os-animation" data-animation="bounceInUp" data-delay=".6s">
+                            <h1>Tech News Scraper</h1>
+                        </div>
+                        <br>
+                        <div class="os-animation" data-animation="bounceInUp" data-delay="1s">
+                            <a class="btn btn-outline-light btn-lg" href="#portfolio">Scrape New Acticles!</a>
+                        </div>
+                    </div>
+
+                    <!--- End Carousel Caption -->
+                </div>
+                <!-- Slide Two -->
+                <div class="carousel-item" style="background-image: url('assets/img/sliderimage2.jpg')" alt="">
+                    <div class="carousel-caption text-center">
+                        <div class="os-animation" data-animation="bounceInUp" data-delay="1s">
+                            <a class="btn btn-outline-light btn-lg" href="#about">Meet TanyaO</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Three -->
+                <div class="carousel-item" style="background-image: url('assets/img/sliderimage3.jpg')" alt="ContactMe">
+                    <div class="carousel-caption text-center">
+                        <div class="os-animation" data-animation="bounceInUp" data-delay="1s">
+                            <a class="btn btn-outline-light btn-lg" href="#contact">Stay in Touch</a>
+                        </div>
+                    </div>
+                </div>
+                <!--- End Carousel Inner -->
+                <!--- Previous & Next Buttons -->
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!--- End Carousel Image Slider -->
+            <h1>Tech News Scraper</h1>
+            <img src="/assets/img/technewsbanner.jpg" id="banner_image">
+
+            {{{ body }}}
+
+<button type="button" class="btn btn-primary" id="scrape">Scrape Articles</button>
+            <footer class="footer">
+                <div class="footer-copyright">
+                    <div class="container">
+                        <div>© 2019</div>
+                        <a>
+                            <href="....">TanyaO</a>
+                    </div>
+                </div>
+            </footer>
+            <script src="../../public/app.js"></script>
 </body>
+
 </html>
