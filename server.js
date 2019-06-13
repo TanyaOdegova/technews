@@ -20,7 +20,7 @@ var db = require("./models");
 
 var PORT = 8080;
 
-// Initialize Express
+// Initialize Express app
 var app = express();
 
 // Configure middleware
@@ -28,10 +28,11 @@ var app = express();
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
+// check if I need to change it to false? //
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static("public"));
+app.use(express.static("/public"));
 
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: "main"}));
@@ -47,7 +48,7 @@ app.get("/", function(req, res){
     var hbsObject = {
       article: data
     };
-    res.render("home", hbsObject);
+    res.render("index", hbsObject);
   });
 });
 
