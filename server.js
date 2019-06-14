@@ -29,10 +29,10 @@ var app = express();
 app.use(logger("dev"));
 // Parse request body as JSON
 // check if I need to change it to false? //
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static("/public"));
+app.use(express.static("public"));
 
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({ defaultLayout: "main"}));
@@ -51,7 +51,15 @@ app.get("/", function(req, res){
     res.render("index", hbsObject);
   });
 });
-
+// Route for Saving the articles //
+app.get("/save", function(req, res){
+  Article.find({"save": true}).populate("note").then(function(articles){
+    var hbsObject = {
+      article: articles
+    };
+    res.render("save", hbsObject);
+  });
+});
 // ROUTE for Saved articles//
 app.get("/saved", function(req, res){
   Article.find({"saved": true}).populate("note").then(function(articles){

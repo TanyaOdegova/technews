@@ -1,9 +1,9 @@
+
 $("#scrape").on("click", function(){
 	$.ajax({
 		method: "GET",
 		url: "/scrape",
 	}).done(function(data){
-		console.log(data)
 		window.location = "/"
 	})
 });
@@ -11,6 +11,20 @@ $("#scrape").on("click", function(){
 $(".navbar-nav li").click(function(){
 	$(".navbar-nav li").removeClass("active");
 	$(this).addClass("active");
+});
+
+$(".save").on("click", function(){
+	var thisId = $(this).attr('data-id');
+
+	console.log('ID', thisId);
+
+	$.ajax({
+		method: "POST",
+		url: "/saved",
+		data: 
+	}).then(function(data){
+		window.location = "/saved"
+	})
 });
 
 $(".delete").on("click", function(){
