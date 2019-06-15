@@ -20,8 +20,10 @@ $(".save").on("click", function(){
 
 	$.ajax({
 		method: "POST",
-		url: "/saved",
-		data: 
+		url: "/save",
+		data: {
+			id: thisId,
+		}
 	}).then(function(data){
 		window.location = "/saved"
 	})

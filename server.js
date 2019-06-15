@@ -44,6 +44,7 @@ mongoose.connect("mongodb://heroku_hfpscxq8:mkhmr6ih3afmck759ag2vor10i@ds233167.
 
 // Routes
 app.get("/", function(req, res){
+
   Article.find({"saved": false}).then(function(data){
     var hbsObject = {
       article: data
@@ -52,23 +53,24 @@ app.get("/", function(req, res){
   });
 });
 // Route for Saving the articles //
-app.get("/save", function(req, res){
-  Article.find({"save": true}).populate("note").then(function(articles){
-    var hbsObject = {
-      article: articles
-    };
-    res.render("save", hbsObject);
+app.post("/save", function(req, res){
+  // TODO: Get the ID of the article
+  var ArticleId = req.body.id;
+
+  // TODO: Update the correct article to be saved: true
+  Article.update({ _id: ArticleId }, {"saved": true}).then(function(articles){
+    res.end(JSON.stringify({ success: true }));
   });
+
 });
 // ROUTE for Saved articles//
 app.get("/saved", function(req, res){
-  Article.find({"saved": true}).populate("note").then(function(articles){
-    var hbsObject = {
-      article: articles
-    };
-    res.render("saved", hbsObject);
+  Article.find({"saved": true}).populate("note").then(function(savedArticles){
+    res.render("saved", { savedArticles });
   });
 });
+
+
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
